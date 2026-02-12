@@ -22,7 +22,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             text-align: center;
         }
         
@@ -86,9 +86,21 @@
         
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
             margin: 3rem 0;
+        }
+        
+        @media (max-width: 900px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
         
         .feature {
@@ -185,9 +197,29 @@
                 <p>No terminal, no npm, no config files. Just click and go.</p>
             </div>
             <div class="feature">
+                <div class="feature-icon">🎛️</div>
+                <h3>Visual Dashboard</h3>
+                <p>Manage everything from a clean macOS interface. No command line needed.</p>
+            </div>
+            <div class="feature">
                 <div class="feature-icon">🤖</div>
                 <h3>10 AI Providers</h3>
                 <p>Claude, GPT, Gemini, DeepSeek, Grok, Kimi, OpenRouter & Local LLM.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔄</div>
+                <h3>Switch Providers Instantly</h3>
+                <p>Change AI providers on the fly. No config editing, no restarts.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Security You Control</h3>
+                <p>Three protection levels. Decide exactly what your agent can and can't do.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💾</div>
+                <h3>Backup & Restore</h3>
+                <p>Export your agent's settings and memories. Restore or migrate anytime.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">💬</div>
