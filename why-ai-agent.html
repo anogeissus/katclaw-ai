@@ -122,6 +122,14 @@
         .cta-button:hover {
             background: #0077ed;
         }
+            /* Mobile: larger fonts for readability */
+        @media (max-width: 768px) {
+            .feature h3, .use-case h3, .option h3, .provider h3 { font-size: 17px !important; }
+            .feature p, .use-case p, .option .desc, .provider p, .provider .price { font-size: 15px !important; }
+            .spec, .specs, .pros li, .cons li, .note, .summary li { font-size: 15px !important; }
+            .description, .subtitle, p { font-size: 16px !important; }
+            .back-link, .text-link { font-size: 17px !important; }
+        }
     </style>
 </head>
 <body>
