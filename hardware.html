@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware Requirements — KatClaw</title>
+    <meta name="description" content="What Mac do you need to run KatClaw? Dedicated Mac Mini, Virtual Machine, or MacBook Air — find the right setup for you.">
+    <link rel="icon" href="Kat-appicon-1024-scaled.png" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            color: #e94560;
+            text-decoration: none;
+            font-size: 1rem;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e94560, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem 0;
+            color: #e94560;
+        }
+        
+        p, li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .option-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .option-card.recommended {
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.1);
+        }
+        
+        .option-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .badge {
+            background: #e94560;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .specs {
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+        
+        .specs-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .specs-row:last-child {
+            border-bottom: none;
+        }
+        
+        .specs-label {
+            color: #a0a0a0;
+        }
+        
+        .specs-value {
+            color: #fff;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .pros h4, .cons h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pros h4 { color: #4ade80; }
+        .cons h4 { color: #f87171; }
+        
+        .pros ul, .cons ul {
+            margin-left: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .pros li, .cons li {
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+        
+        .note {
+            background: rgba(233, 69, 96, 0.1);
+            border-left: 3px solid #e94560;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            font-size: 1rem;
+        }
+        
+        .cta {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #e94560, #ff6b9d);
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+        }
+        
+        @media (max-width: 600px) {
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to KatClaw</a>
+        
+        <h1>Hardware Requirements</h1>
+        <p class="subtitle">Choose the setup that fits your needs — from dedicated mini to virtual machine.</p>
+        
+        <h2>Three Ways to Run KatClaw</h2>
+        
+        <!-- Option 1: Dedicated Mac Mini -->
+        <div class="option-card recommended">
+            <h3>
+                <span>🖥️ Dedicated Mac Mini</span>
+                <span class="badge">Recommended</span>
+            </h3>
+            <p>A dedicated Apple Silicon Mac Mini running your AI agent 24/7. Set it and forget it.</p>
+            
+            <div class="specs">
+                <div class="specs-row">
+                    <span class="specs-label">Chip</span>
+                    <span class="specs-value">Apple M4 (or M1/M2/M3)</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">RAM</span>
+                    <span class="specs-value">8GB minimum</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">Storage</span>
+                    <span class="specs-value">256GB SSD</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">Price</span>
+                    <span class="specs-value">From US$599</span>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>✓ Pros</h4>
+                    <ul>
+                        <li>Always on, always ready</li>
+                        <li>No resource sharing</li>
+                        <li>Headless operation</li>
+                        <li>Best price/performance</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>✗ Cons</h4>
+                    <ul>
+                        <li>Dedicated hardware cost</li>
+                        <li>Another device to manage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Option 2: Virtual Machine -->
+        <div class="option-card">
+            <h3>🖼️ Virtual Machine (Parallels / UTM)</h3>
+            <p>Run KatClaw in a macOS VM on your existing Mac. Great for testing or if you already have a powerful machine.</p>
+            
+            <div class="specs">
+                <div class="specs-row">
+                    <span class="specs-label">Host Mac</span>
+                    <span class="specs-value">Apple Silicon (M1/M2/M3/M4)</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">Host RAM</span>
+                    <span class="specs-value">16GB+ (to allocate 8GB to VM)</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">Host Storage</span>
+                    <span class="specs-value">512GB+ SSD</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">VM Software</span>
+                    <span class="specs-value">Parallels Desktop or UTM (free)</span>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>✓ Pros</h4>
+                    <ul>
+                        <li>Use existing hardware</li>
+                        <li>Easy snapshots/backups</li>
+                        <li>Isolated environment</li>
+                        <li>UTM is free</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>✗ Cons</h4>
+                    <ul>
+                        <li>Shares host resources</li>
+                        <li>Must keep host running</li>
+                        <li>Clipboard sharing setup needed</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="note">
+                <strong>VM Specs:</strong> Allocate at least 8GB RAM and 100GB disk to your VM. 
+                For Local LLM support, allocate 16GB RAM.
+            </div>
+        </div>
+        
+        <!-- Option 3: MacBook Air -->
+        <div class="option-card">
+            <h3>💻 MacBook Air / MacBook Pro</h3>
+            <p>Run KatClaw directly on your laptop. Best for hands-on users who want easy access to configuration and logs.</p>
+            
+            <div class="specs">
+                <div class="specs-row">
+                    <span class="specs-label">Chip</span>
+                    <span class="specs-value">Apple M1 or later</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">RAM</span>
+                    <span class="specs-value">8GB minimum (16GB for Local LLM)</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">Storage</span>
+                    <span class="specs-value">256GB SSD</span>
+                </div>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>✓ Pros</h4>
+                    <ul>
+                        <li>Direct access to config</li>
+                        <li>Easy debugging</li>
+                        <li>No network setup needed</li>
+                        <li>Portable</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>✗ Cons</h4>
+                    <ul>
+                        <li>Folder permission popups</li>
+                        <li>Agent stops when laptop sleeps</li>
+                        <li>Shares your daily driver</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="note">
+                <strong>Heads up:</strong> macOS will show permission popups when the agent accesses 
+                folders like Documents or Desktop for the first time. This is normal — just approve them once.
+            </div>
+        </div>
+        
+        <h2>Which Should You Choose?</h2>
+        
+        <p><strong>Go with Mac Mini if:</strong> You want a "set and forget" agent running 24/7, or you're serious about AI automation.</p>
+        
+        <p><strong>Go with VM if:</strong> You already have a powerful Mac and want to experiment without dedicated hardware.</p>
+        
+        <p><strong>Go with MacBook if:</strong> You want easy access to tweak settings, check logs, and understand how your agent works.</p>
+        
+        <div class="cta">
+            <a href="index.html" class="cta-button">← Back to KatClaw</a>
+        </div>
+    </div>
+</body>
+</html>
