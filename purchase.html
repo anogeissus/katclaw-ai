@@ -575,11 +575,15 @@
             btn.textContent = "Sending…";
 
             try {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 15000);
                 const res = await fetch(`${WORKER_URL}/founding/send-code`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email })
+                    body: JSON.stringify({ email }),
+                    signal: controller.signal
                 });
+                clearTimeout(timeout);
                 const data = await res.json();
 
                 if (!res.ok) {
@@ -597,11 +601,10 @@
                 document.getElementById("code-error").textContent = "";
                 document.getElementById("code-input").focus();
             } catch (err) {
-                errEl.textContent = "Network error. Please try again.";
+                errEl.textContent = err.name === "AbortError" ? "Request timed out. Please try again." : "Network error. Please try again.";
+                btn.disabled = false;
+                btn.textContent = "Send Verification Code";
             }
-
-            btn.disabled = false;
-            btn.textContent = "Send Verification Code";
         }
 
         async function verifyCode() {
