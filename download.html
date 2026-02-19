@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download KatClaw™</title>
+    <meta name="description" content="Download KatClaw for macOS. One-click AI agent installer for Mac.">
+    <link rel="icon" href="Kat-appicon-1024-scaled.png" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #fff;
+            color: #1d1d1f;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            text-align: center;
+        }
+        
+        .back-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            text-align: left;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 26px;
+            margin: 40px auto 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        
+        .version {
+            font-size: 14px;
+            color: #6e6e73;
+            margin-bottom: 24px;
+        }
+        
+        .download-button {
+            display: inline-block;
+            background: #0071e3;
+            color: #fff;
+            padding: 14px 40px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 980px;
+            transition: background 0.2s;
+            margin-bottom: 12px;
+        }
+        
+        .download-button:hover { background: #0077ed; }
+        
+        .file-info {
+            font-size: 13px;
+            color: #86868b;
+            margin-bottom: 40px;
+        }
+        
+        .requirements {
+            background: #f5f5f7;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        
+        .requirements h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .requirements ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .requirements li {
+            font-size: 14px;
+            color: #1d1d1f;
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .requirements li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34c759;
+            font-weight: 600;
+        }
+        
+        .steps {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        
+        .steps h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .step-number {
+            background: #0071e3;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 12px;
+            margin-top: 1px;
+        }
+        
+        .step p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1d1d1f;
+        }
+        
+        .license-note {
+            font-size: 14px;
+            color: #6e6e73;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        
+        .license-note a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .license-note a:hover { text-decoration: underline; }
+        
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #86868b;
+            font-size: 13px;
+            border-top: 1px solid #d2d2d7;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .back-link { font-size: 17px !important; }
+            .step p { font-size: 15px !important; }
+            .requirements li { font-size: 15px !important; }
+            .license-note { font-size: 15px !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        
+        <img src="Kat-appicon-1024-scaled.png" alt="KatClaw" class="app-icon">
+        <h1>Download KatClaw<sup style="font-size: 0.35em; vertical-align: super; font-weight: 400;">™</sup></h1>
+        <p class="version">macOS · Apple Silicon & Intel</p>
+        
+        <a href="https://github.com/anogeissus/katclaw-updates/releases/latest/download/KatClaw.dmg" class="download-button">
+            Download KatClaw.dmg
+        </a>
+        <p class="file-info">Requires macOS 14 Sonoma or later</p>
+        
+        <div class="steps">
+            <h2>Installation</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <p>Open the downloaded <strong>KatClaw.dmg</strong></p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <p>Drag <strong>KatClaw</strong> to the <strong>Applications</strong> folder</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <p>Launch KatClaw from Applications and enter your license key</p>
+            </div>
+        </div>
+        
+        <p class="license-note">
+            Don't have a license key yet? <a href="purchase.html">Get one here</a> — free for the first 100 users.
+        </p>
+    </div>
+    
+    <footer class="footer">
+        Built by <a href="https://apollooneapp.com" target="_blank">Anogeissus</a> · © 2026<br>
+        <a href="privacy.html" style="color: #86868b; margin-right: 12px;">Privacy</a>
+        <a href="termsofuse.html" style="color: #86868b; margin-right: 12px;">Terms of Use</a>
+        <a href="refund.html" style="color: #86868b;">Refund Policy</a>
+    </footer>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/698e7e8f75334a1c3b4983ab/1jha9so9t';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>
