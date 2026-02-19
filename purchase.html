@@ -797,11 +797,21 @@
         // Enter key handlers
         document.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
-                if (document.getElementById("step-email").style.display !== "none" &&
-                    document.getElementById("modal").classList.contains("active")) {
-                    sendCode();
-                } else if (document.getElementById("step-code").style.display !== "none") {
-                    verifyCode();
+                // Founding modal
+                if (document.getElementById("modal").classList.contains("active")) {
+                    if (document.getElementById("step-email").style.display !== "none") {
+                        sendCode();
+                    } else if (document.getElementById("step-code").style.display !== "none") {
+                        verifyCode();
+                    }
+                }
+                // Recovery modal
+                if (document.getElementById("recover-modal").classList.contains("active")) {
+                    if (document.getElementById("recover-step-email").style.display !== "none") {
+                        recoverSendCode();
+                    } else if (document.getElementById("recover-step-code").style.display !== "none") {
+                        recoverVerifyCode();
+                    }
                 }
             }
             if (e.key === "Escape") { closeModal(); closeRecoverModal(); }
