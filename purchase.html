@@ -443,7 +443,7 @@
 
             <div class="faq-item">
                 <h3>I lost my license key</h3>
-                <p>Enter the same email you used to claim your license — we'll find your existing key.</p>
+                <p><a href="#" onclick="showRecoverStep(); return false;" style="color: #0066cc;">Click here to recover your key</a> — enter the email you used and we'll send you a verification code.</p>
             </div>
         </div>
     </div>
@@ -488,6 +488,38 @@
         </div>
     </div>
     
+    <!-- Recovery Modal -->
+    <div class="modal-overlay" id="recover-modal">
+        <div class="modal">
+            <!-- Step 1: Email -->
+            <div id="recover-step-email">
+                <h2>Recover License Key</h2>
+                <p>Enter the email you used to get your license.</p>
+                <div class="modal-error" id="recover-email-error"></div>
+                <input type="email" id="recover-email-input" placeholder="your@email.com" autocomplete="email">
+                <button class="modal-button" id="recover-send-btn" onclick="recoverSendCode()" style="background: #0071e3;">Send Verification Code</button>
+                <button class="modal-cancel" onclick="closeRecoverModal()">Cancel</button>
+            </div>
+            
+            <!-- Step 2: Code -->
+            <div id="recover-step-code" style="display:none;">
+                <h2>Check Your Email</h2>
+                <p>We sent a 6-digit code to <strong id="recover-code-email-display"></strong></p>
+                <div class="modal-error" id="recover-code-error"></div>
+                <input type="text" id="recover-code-input" class="code-input" placeholder="000000" maxlength="6" inputmode="numeric" autocomplete="one-time-code">
+                <button class="modal-button" id="recover-verify-btn" onclick="recoverVerifyCode()" style="background: #0071e3;">Verify & Recover Key</button>
+                <button class="modal-cancel" onclick="closeRecoverModal()">Cancel</button>
+            </div>
+            
+            <!-- Step 3: Keys -->
+            <div id="recover-step-keys" style="display:none;">
+                <h2>Your License Keys</h2>
+                <div id="recover-keys-list"></div>
+                <button class="modal-cancel" onclick="closeRecoverModal()" style="margin-top: 16px;">Close</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         Built by <a href="https://apollooneapp.com" target="_blank">Anogeissus</a> · © 2026<br>
         <a href="privacy.html" style="color: #86868b; margin-right: 12px;">Privacy</a>
@@ -654,6 +686,114 @@
             });
         }
 
+        // --- Recovery flow ---
+        let recoverEmail = "";
+
+        function showRecoverStep() {
+            document.getElementById("recover-modal").classList.add("active");
+            document.getElementById("recover-step-email").style.display = "";
+            document.getElementById("recover-step-code").style.display = "none";
+            document.getElementById("recover-step-keys").style.display = "none";
+            document.getElementById("recover-email-error").textContent = "";
+            document.getElementById("recover-email-input").value = "";
+            document.getElementById("recover-email-input").focus();
+        }
+
+        function closeRecoverModal() {
+            document.getElementById("recover-modal").classList.remove("active");
+        }
+
+        async function recoverSendCode() {
+            const email = document.getElementById("recover-email-input").value.trim().toLowerCase();
+            const errEl = document.getElementById("recover-email-error");
+            const btn = document.getElementById("recover-send-btn");
+            errEl.textContent = "";
+
+            if (!email || !email.includes("@") || !email.includes(".")) {
+                errEl.textContent = "Please enter a valid email address";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Sending…";
+
+            try {
+                const res = await fetch(`${WORKER_URL}/license/recover-send`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    errEl.textContent = data.error || "Failed to send code";
+                    btn.disabled = false;
+                    btn.textContent = "Send Verification Code";
+                    return;
+                }
+
+                recoverEmail = email;
+                document.getElementById("recover-code-email-display").textContent = email;
+                document.getElementById("recover-step-email").style.display = "none";
+                document.getElementById("recover-step-code").style.display = "";
+                document.getElementById("recover-code-input").value = "";
+                document.getElementById("recover-code-error").textContent = "";
+                document.getElementById("recover-code-input").focus();
+            } catch (err) {
+                errEl.textContent = "Network error. Please try again.";
+            }
+
+            btn.disabled = false;
+            btn.textContent = "Send Verification Code";
+        }
+
+        async function recoverVerifyCode() {
+            const code = document.getElementById("recover-code-input").value.trim();
+            const errEl = document.getElementById("recover-code-error");
+            const btn = document.getElementById("recover-verify-btn");
+            errEl.textContent = "";
+
+            if (!code || code.length !== 6) {
+                errEl.textContent = "Please enter the 6-digit code";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Verifying…";
+
+            try {
+                const res = await fetch(`${WORKER_URL}/license/recover-verify`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: recoverEmail, code })
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    errEl.textContent = data.error || "Verification failed";
+                    btn.disabled = false;
+                    btn.textContent = "Verify & Recover Key";
+                    return;
+                }
+
+                // Show all keys
+                const listEl = document.getElementById("recover-keys-list");
+                listEl.innerHTML = data.licenses.map(l => `
+                    <div class="key-box" style="margin-bottom: 12px;">
+                        <div class="key-label">${l.tier === "founding" ? "Founding License" : "Standard License"}</div>
+                        <div class="key-value" style="font-size: 15px;">${l.key}</div>
+                    </div>
+                `).join("");
+
+                document.getElementById("recover-step-code").style.display = "none";
+                document.getElementById("recover-step-keys").style.display = "";
+            } catch (err) {
+                errEl.textContent = "Network error. Please try again.";
+                btn.disabled = false;
+                btn.textContent = "Verify & Recover Key";
+            }
+        }
+
         // Enter key handlers
         document.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
@@ -664,7 +804,7 @@
                     verifyCode();
                 }
             }
-            if (e.key === "Escape") closeModal();
+            if (e.key === "Escape") { closeModal(); closeRecoverModal(); }
         });
     </script>
 
