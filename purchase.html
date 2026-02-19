@@ -638,7 +638,9 @@
         function openPaidCheckout() {
             Paddle.Checkout.open({
                 items: [{ priceId: PADDLE_PAID_PRICE_ID, quantity: 1 }],
-                successUrl: `${window.location.origin}/thank-you.html`
+                settings: {
+                    successUrl: `${window.location.origin}/thank-you.html`
+                }
             });
         }
 
