@@ -764,12 +764,18 @@
 
                 // Show all keys
                 const listEl = document.getElementById("recover-keys-list");
-                listEl.innerHTML = data.licenses.map(l => `
+                listEl.innerHTML = data.licenses.map(l => {
+                    let label;
+                    if (l.tier === "founding") label = "Founding License";
+                    else if (l.tier === "gift") label = "Gift License";
+                    else label = "Standard License";
+                    return `
                     <div class="key-box" style="margin-bottom: 12px;">
-                        <div class="key-label">${l.tier === "founding" ? "Founding License" : "Standard License"}</div>
+                        <div class="key-label">${label}</div>
                         <div class="key-value" style="font-size: 15px;">${l.key}</div>
                     </div>
-                `).join("");
+                    `;
+                }).join("");
 
                 document.getElementById("recover-step-code").style.display = "none";
                 document.getElementById("recover-step-keys").style.display = "";
