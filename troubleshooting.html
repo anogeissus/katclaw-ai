@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting — KatClaw™</title>
+    <meta name="description" content="Fix common KatClaw issues: install, gateway, AI provider auth, VM setup, security mode, backups, and licensing.">
+    <link rel="icon" href="Kat-appicon-1024-scaled.png" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #fff;
+            color: #1d1d1f;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        .back-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 20px 0 8px;
+        }
+        .subtitle {
+            font-size: 17px;
+            color: #6e6e73;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .quick-links {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .quick-links a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .quick-links a:hover { text-decoration: underline; }
+        h2 {
+            font-size: 21px;
+            font-weight: 600;
+            margin: 32px 0 14px;
+            color: #1d1d1f;
+            border-top: 1px solid #d2d2d7;
+            padding-top: 20px;
+        }
+        .issue {
+            margin-bottom: 16px;
+        }
+        .issue h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .issue p, .issue li {
+            font-size: 14px;
+            color: #6e6e73;
+            line-height: 1.6;
+        }
+        .issue ul, .issue ol {
+            margin: 8px 0 0 20px;
+        }
+        .issue a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .issue a:hover { text-decoration: underline; }
+        .note {
+            background: #fff8e8;
+            border: 1px solid #ffe2ad;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #8a5a00;
+            line-height: 1.5;
+        }
+        code {
+            background: #f5f5f7;
+            padding: 1px 5px;
+            border-radius: 5px;
+            font-family: 'SF Mono', SFMono-Regular, Menlo, Monaco, monospace;
+            font-size: 12px;
+            color: #1d1d1f;
+        }
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #86868b;
+            font-size: 13px;
+            border-top: 1px solid #d2d2d7;
+            margin-top: 40px;
+        }
+        .footer a { color: #0066cc; text-decoration: none; }
+        @media (max-width: 768px) {
+            h1 { font-size: 28px; }
+            .subtitle { font-size: 16px; }
+            .issue p, .issue li, .quick-links { font-size: 15px; }
+            .back-link { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <a class="back-link" href="index.html">← Back to Home</a>
+        <h1>Troubleshooting</h1>
+        <p class="subtitle">Common KatClaw issues and fast fixes. If you’re stuck after trying these steps, email <a href="mailto:support@katclaw.ai">support@katclaw.ai</a>.</p>
+
+        <div class="quick-links">
+            Jump to:
+            <a href="#install">Install</a>
+            <a href="#gateway">Gateway</a>
+            <a href="#ai">AI Providers</a>
+            <a href="#security">Security Mode</a>
+            <a href="#backup">Backup & Restore</a>
+            <a href="#license">Licensing</a>
+        </div>
+
+        <h2 id="install">Installation Issues</h2>
+        <div class="issue">
+            <h3>"Git / Xcode Tools install opens Terminal but nothing happens"</h3>
+            <p>Wait 30–60 seconds. macOS may be preparing the installer silently. If no dialog appears, run <code>xcode-select --install</code> manually in Terminal.</p>
+        </div>
+        <div class="issue">
+            <h3>"Node.js installation failed"</h3>
+            <ol>
+                <li>Download Node.js LTS from nodejs.org</li>
+                <li>Install the .pkg</li>
+                <li>Return to KatClaw and click Refresh</li>
+            </ol>
+        </div>
+
+        <h2 id="gateway">Gateway & Web UI Issues</h2>
+        <div class="issue">
+            <h3>Gateway won’t start</h3>
+            <p>Possible causes: port conflict, broken Node install, or invalid config.</p>
+            <ol>
+                <li>Restart your Mac</li>
+                <li>Try Start Gateway again</li>
+                <li>If needed, use Dashboard → Repair Gateway Service</li>
+            </ol>
+        </div>
+        <div class="issue">
+            <h3>Web UI not loading</h3>
+            <ul>
+                <li>Use: <code>http://localhost:18789?token=YOUR_TOKEN</code></li>
+                <li>Get token from Dashboard → VM Network Setup → Step 4, or run <code>openclaw auth token</code></li>
+                <li>Confirm gateway is running</li>
+            </ul>
+            <div class="note">VM users: direct <code>http://VM_IP:18789</code> is blocked by browser security. Use SSH tunnel: <code>ssh -L 18789:localhost:18789 user@VM_IP</code>.</div>
+        </div>
+
+        <h2 id="ai">AI Provider Issues</h2>
+        <div class="issue">
+            <h3>API key not working</h3>
+            <ul>
+                <li>Remove extra spaces</li>
+                <li>Verify key format matches provider</li>
+                <li>Check account credits/subscription</li>
+            </ul>
+        </div>
+        <div class="issue">
+            <h3>OAuth 2FA stuck on QR/passkey (Claude/OpenAI in VM)</h3>
+            <p>In macOS VMs, Bluetooth passkey flows usually fail.</p>
+            <ol>
+                <li>Click <strong>Cancel</strong> on QR/passkey</li>
+                <li>Click <strong>Use another method</strong></li>
+                <li>Choose <strong>Authenticator app</strong></li>
+            </ol>
+        </div>
+        <div class="issue">
+            <h3>Response is empty or weird</h3>
+            <p>Use instruction-tuned models, not reasoning-only models that emit hidden thinking tags.</p>
+        </div>
+
+        <h2 id="security">Security Mode Issues</h2>
+        <div class="issue">
+            <h3>Commands fail in Moderate mode</h3>
+            <p>Use full binary paths in command allowlist mode.</p>
+            <ul>
+                <li>❌ <code>git status</code></li>
+                <li>✅ <code>/usr/bin/git status</code></li>
+            </ul>
+        </div>
+
+        <h2 id="backup">Backup & Restore Issues</h2>
+        <div class="issue">
+            <h3>Backup won’t restore</h3>
+            <ul>
+                <li>Confirm file is a valid .zip</li>
+                <li>Try a newer backup</li>
+                <li>Make sure KatClaw version is compatible</li>
+            </ul>
+        </div>
+        <div class="issue">
+            <h3>Settings missing after update</h3>
+            <p>Check auto backups in <code>~/.openclaw/backups/</code> and restore Last Known Good.</p>
+        </div>
+
+        <h2 id="license">Licensing Issues</h2>
+        <div class="issue">
+            <h3>Failed to activate license</h3>
+            <ul>
+                <li>Check internet connection</li>
+                <li>If active on another Mac, transfer first</li>
+                <li>Contact <a href="mailto:support@katclaw.ai">support@katclaw.ai</a> if still blocked</li>
+            </ul>
+        </div>
+        <div class="issue">
+            <h3>Founding license page/code not working</h3>
+            <p>Some ISPs block <code>*.workers.dev</code>. Try another network, mobile data, or VPN. Check spam for verification email.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        Need help? <a href="mailto:support@katclaw.ai">support@katclaw.ai</a> · KatClaw™ by Anogeissus
+    </footer>
+</body>
+</html>
