@@ -138,7 +138,7 @@
         <h2 id="install">Installation Issues</h2>
         <div class="issue">
             <h3>"Git / Xcode Tools install opens Terminal but nothing happens"</h3>
-            <p>Wait 30–60 seconds. macOS may be preparing the installer silently. If no dialog appears, run <code>xcode-select --install</code> manually in Terminal.</p>
+            <p>Wait 30–60 seconds. macOS may be preparing the installer silently. The install window can appear behind KatClaw Wizard — check the Xcode/Terminal app icon in the Dock and bring that window to front. If no dialog appears, run <code>xcode-select --install</code> manually in Terminal.</p>
         </div>
         <div class="issue">
             <h3>"Node.js installation failed"</h3>
@@ -195,10 +195,10 @@
         <h2 id="security">Security Mode Issues</h2>
         <div class="issue">
             <h3>Commands fail in Moderate mode</h3>
-            <p>Use full binary paths in command allowlist mode.</p>
+            <p>Usually you should not need to manually enter binary paths. KatClaw resolves paths automatically, and approval popups can add the exact command/path for you.</p>
+            <p>Manual full paths are mainly needed for advanced/custom shell commands.</p>
             <ul>
-                <li>❌ <code>git status</code></li>
-                <li>✅ <code>/usr/bin/git status</code></li>
+                <li>Example: <code>/usr/bin/git status</code></li>
             </ul>
         </div>
 
