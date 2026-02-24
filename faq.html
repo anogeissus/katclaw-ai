@@ -302,6 +302,11 @@
             <p>Yes. In KatClaw's menu bar, click <strong>Transfer License to Another Mac</strong>. This deactivates your current Mac and shows your license key to use on the new one. One Mac at a time.</p>
         </div>
         
+        <div class="faq-item" id="deactivate">
+            <h3>Switched to a new Mac? Forgot to deactivate?</h3>
+            <p>If you wiped or sold your old Mac without deactivating KatClaw first, you can deactivate your license remotely. <a href="#" onclick="showDeactivateStep(); return false;">Click here to deactivate</a> — verify your email, select which license to deactivate, and you'll be able to activate on your new Mac.</p>
+        </div>
+        
         <div class="faq-item">
             <h3>I lost my license key</h3>
             <p><a href="#" onclick="showRecoverStep(); return false;">Click here to recover your key</a> — enter the email you used when you claimed or purchased your license. We'll send a verification code and display your key.</p>
@@ -420,6 +425,36 @@
                 <h2>Your License Keys</h2>
                 <div id="recover-keys-list"></div>
                 <button class="modal-cancel" onclick="closeRecoverModal()" style="margin-top: 16px;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deactivation Modal -->
+    <div class="modal-overlay" id="deactivate-modal">
+        <div class="modal">
+            <div id="deactivate-step-email">
+                <h2>Deactivate License</h2>
+                <p>Enter the email associated with your license. We'll send a verification code.</p>
+                <div class="modal-error" id="deactivate-email-error"></div>
+                <input type="email" id="deactivate-email-input" placeholder="your@email.com" autocomplete="email">
+                <button class="modal-button" id="deactivate-send-btn" onclick="deactivateSendCode()">Send Verification Code</button>
+                <button class="modal-cancel" onclick="closeDeactivateModal()">Cancel</button>
+            </div>
+            
+            <div id="deactivate-step-code" style="display:none;">
+                <h2>Check Your Email</h2>
+                <p>We sent a 6-digit code to <strong id="deactivate-code-email-display"></strong></p>
+                <div class="modal-error" id="deactivate-code-error"></div>
+                <input type="text" id="deactivate-code-input" class="code-input" placeholder="000000" maxlength="6" inputmode="numeric" autocomplete="one-time-code">
+                <button class="modal-button" id="deactivate-verify-btn" onclick="deactivateVerifyCode()">Verify & Show Licenses</button>
+                <button class="modal-cancel" onclick="closeDeactivateModal()">Cancel</button>
+            </div>
+            
+            <div id="deactivate-step-licenses" style="display:none;">
+                <h2>Your Licenses</h2>
+                <p style="color: #6e6e73; font-size: 14px; margin-bottom: 16px;">Select a license to deactivate. This removes the machine lock so you can activate on a new Mac.</p>
+                <div id="deactivate-licenses-list"></div>
+                <button class="modal-cancel" onclick="closeDeactivateModal()" style="margin-top: 16px;">Close</button>
             </div>
         </div>
     </div>
@@ -554,9 +589,168 @@
                         recoverVerifyCode();
                     }
                 }
+                if (document.getElementById("deactivate-modal").classList.contains("active")) {
+                    if (document.getElementById("deactivate-step-email").style.display !== "none") {
+                        deactivateSendCode();
+                    } else if (document.getElementById("deactivate-step-code").style.display !== "none") {
+                        deactivateVerifyCode();
+                    }
+                }
             }
-            if (e.key === "Escape") closeRecoverModal();
+            if (e.key === "Escape") { closeRecoverModal(); closeDeactivateModal(); }
         });
+
+        // --- License Deactivation ---
+        let deactivateEmail = "";
+        let deactivateCode = "";
+
+        function showDeactivateStep() {
+            document.getElementById("deactivate-modal").classList.add("active");
+            document.getElementById("deactivate-step-email").style.display = "";
+            document.getElementById("deactivate-step-code").style.display = "none";
+            document.getElementById("deactivate-step-licenses").style.display = "none";
+            document.getElementById("deactivate-email-error").textContent = "";
+            document.getElementById("deactivate-email-input").value = "";
+            document.getElementById("deactivate-email-input").focus();
+        }
+
+        function closeDeactivateModal() {
+            document.getElementById("deactivate-modal").classList.remove("active");
+        }
+
+        async function deactivateSendCode() {
+            const email = document.getElementById("deactivate-email-input").value.trim().toLowerCase();
+            const errEl = document.getElementById("deactivate-email-error");
+            const btn = document.getElementById("deactivate-send-btn");
+            errEl.textContent = "";
+
+            if (!email || !email.includes("@") || !email.includes(".")) {
+                errEl.textContent = "Please enter a valid email address";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Sending…";
+
+            try {
+                const res = await fetch(`${WORKER_URL}/license/deactivate-send`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    errEl.textContent = data.error || "Failed to send code";
+                    btn.disabled = false;
+                    btn.textContent = "Send Verification Code";
+                    return;
+                }
+
+                deactivateEmail = email;
+                document.getElementById("deactivate-code-email-display").textContent = email;
+                document.getElementById("deactivate-step-email").style.display = "none";
+                document.getElementById("deactivate-step-code").style.display = "";
+                document.getElementById("deactivate-code-input").value = "";
+                document.getElementById("deactivate-code-error").textContent = "";
+                document.getElementById("deactivate-code-input").focus();
+            } catch (err) {
+                errEl.textContent = "Network error. Please try again.";
+            }
+
+            btn.disabled = false;
+            btn.textContent = "Send Verification Code";
+        }
+
+        async function deactivateVerifyCode() {
+            const code = document.getElementById("deactivate-code-input").value.trim();
+            const errEl = document.getElementById("deactivate-code-error");
+            const btn = document.getElementById("deactivate-verify-btn");
+            errEl.textContent = "";
+
+            if (!code || code.length !== 6) {
+                errEl.textContent = "Please enter the 6-digit code";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Verifying…";
+
+            try {
+                const res = await fetch(`${WORKER_URL}/license/deactivate-verify`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: deactivateEmail, code })
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    errEl.textContent = data.error || "Verification failed";
+                    btn.disabled = false;
+                    btn.textContent = "Verify & Show Licenses";
+                    return;
+                }
+
+                deactivateCode = code;
+                const listEl = document.getElementById("deactivate-licenses-list");
+                listEl.innerHTML = data.licenses.map(l => {
+                    const tierLabel = l.tier === "founding" ? "Founding" : l.tier === "gift" ? "Gift" : "Standard";
+                    const maskedKey = "••••-" + l.key.slice(-4);
+                    const machineCount = l.machines.length;
+                    const isActive = machineCount > 0;
+
+                    return `
+                    <div class="key-box" id="license-${l.id}" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div class="key-label">${tierLabel} License</div>
+                            <div class="key-value" style="font-size: 15px;">${maskedKey}</div>
+                            <div style="font-size: 13px; color: ${isActive ? '#e94560' : '#86868b'}; margin-top: 4px;">
+                                ${isActive ? `🟢 Active (${machineCount} machine${machineCount > 1 ? 's' : ''})` : '⚪ Not activated'}
+                            </div>
+                        </div>
+                        ${isActive ? `<button class="modal-button" style="background: #e94560; padding: 8px 16px; font-size: 13px; width: auto; margin: 0;" onclick="deactivateLicense('${l.id}', this)">Deactivate</button>` : ''}
+                    </div>
+                    `;
+                }).join("");
+
+                document.getElementById("deactivate-step-code").style.display = "none";
+                document.getElementById("deactivate-step-licenses").style.display = "";
+            } catch (err) {
+                errEl.textContent = "Network error. Please try again.";
+                btn.disabled = false;
+                btn.textContent = "Verify & Show Licenses";
+            }
+        }
+
+        async function deactivateLicense(licenseId, btnEl) {
+            btnEl.disabled = true;
+            btnEl.textContent = "Deactivating…";
+
+            try {
+                const res = await fetch(`${WORKER_URL}/license/deactivate`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: deactivateEmail, code: deactivateCode, licenseId })
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    btnEl.textContent = data.error || "Failed";
+                    btnEl.disabled = false;
+                    return;
+                }
+
+                // Update UI for this license
+                const box = document.getElementById(`license-${licenseId}`);
+                const statusEl = box.querySelector("div > div:last-child");
+                statusEl.style.color = "#34c759";
+                statusEl.textContent = "✓ Deactivated — ready to activate on new Mac";
+                btnEl.remove();
+            } catch (err) {
+                btnEl.textContent = "Error — retry";
+                btnEl.disabled = false;
+            }
+        }
     </script>
 
 </body>
