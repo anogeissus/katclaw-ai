@@ -136,6 +136,22 @@
             .tagline { font-size: 16px; }
         }
         
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .security-grid { grid-template-columns: 1fr; }
+            .privacy-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
         .feature {
             background: #fff;
             padding: 16px 14px;
@@ -269,7 +285,7 @@
             <h2 style="text-align: center; font-size: 24px; font-weight: 600; color: #1d1d1f; margin-bottom: 6px;">🛡️ Secure by Default. Private by Design.</h2>
             <p style="text-align: center; font-size: 15px; color: #6e6e73; margin-bottom: 28px;">AI automation is powerful — but it needs guardrails. KatClaw ships with them built in.</p>
             
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+            <div class="security-grid">
                 <div style="background: #fff; border-radius: 12px; padding: 20px;">
                     <h3 style="font-size: 16px; font-weight: 600; color: #1d1d1f; margin-bottom: 8px;">🔒 Three Security Levels</h3>
                     <p style="font-size: 14px; color: #6e6e73; line-height: 1.5;">
@@ -290,7 +306,7 @@
                 </div>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px;">
+            <div class="privacy-grid">
                 <div style="background: #fff; border-radius: 12px; padding: 16px; text-align: center;">
                     <div style="font-size: 24px; margin-bottom: 4px;">🚫</div>
                     <h3 style="font-size: 14px; font-weight: 600; color: #1d1d1f; margin-bottom: 4px;">No Cloud Servers</h3>
