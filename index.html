@@ -152,6 +152,35 @@
             .privacy-grid { grid-template-columns: repeat(2, 1fr); }
         }
         
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .screenshot-item {
+            text-align: center;
+        }
+        .screenshot-item img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .screenshot-item img:hover {
+            transform: scale(1.03);
+        }
+        .screenshot-item span {
+            display: block;
+            font-size: 13px;
+            color: #6e6e73;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        @media (max-width: 600px) {
+            .screenshot-gallery { grid-template-columns: repeat(2, 1fr); }
+        }
+        
         .feature {
             background: #fff;
             padding: 16px 14px;
@@ -275,6 +304,41 @@
                 <div class="feature-icon">🔒</div>
                 <h3>Runs Locally</h3>
                 <p>Your data stays on your Mac.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screenshots -->
+    <section style="padding: 36px 24px 40px; background: #fff;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h2 style="text-align: center; font-size: 24px; font-weight: 600; color: #1d1d1f; margin-bottom: 6px;">See It in Action</h2>
+            <p style="text-align: center; font-size: 15px; color: #6e6e73; margin-bottom: 24px;">Native macOS UI. Dark theme. Everything you need in one place.</p>
+            
+            <div class="screenshot-gallery">
+                <div class="screenshot-item">
+                    <img src="screenshots/dashboard.jpg" alt="KatClaw Dashboard" loading="lazy">
+                    <span>Dashboard</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshots/ai-provider.jpg" alt="AI Provider Setup" loading="lazy">
+                    <span>AI Providers</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshots/security-audit.jpg" alt="Security Audit" loading="lazy">
+                    <span>Security Audit</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshots/security-setting.jpg" alt="Security Settings" loading="lazy">
+                    <span>Security Settings</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshots/approval-popup.jpg" alt="Exec Approval Popup" loading="lazy">
+                    <span>Exec Approval</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshots/backup-restore.jpg" alt="Backup & Restore" loading="lazy">
+                    <span>Backup & Restore</span>
+                </div>
             </div>
         </div>
     </section>
