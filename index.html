@@ -138,17 +138,24 @@
         
         .security-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         .privacy-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
             margin-top: 20px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 900px) {
+            .security-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
-            .security-grid { grid-template-columns: 1fr; }
             .privacy-grid { grid-template-columns: repeat(2, 1fr); }
         }
         
@@ -281,7 +288,7 @@
     
     <!-- Security & Backup Highlight -->
     <section style="padding: 36px 24px 40px; background: #f5f5f7;">
-        <div style="max-width: 780px; margin: 0 auto;">
+        <div style="max-width: 1000px; margin: 0 auto;">
             <h2 style="text-align: center; font-size: 24px; font-weight: 600; color: #1d1d1f; margin-bottom: 6px;">🛡️ Secure by Default. Private by Design.</h2>
             <p style="text-align: center; font-size: 15px; color: #6e6e73; margin-bottom: 28px;">AI automation is powerful — but it needs guardrails. KatClaw ships with them built in.</p>
             
@@ -293,6 +300,15 @@
                         <strong style="color: #b25000;">Moderate</strong> — only your allowlisted commands run.<br>
                         <strong style="color: #d70015;">Full Access</strong> — unrestricted, for power users.<br><br>
                         You decide exactly what automation can touch. Not the cloud. Not a third party. <em>You.</em>
+                    </p>
+                </div>
+                <div style="background: #fff; border-radius: 12px; padding: 20px;">
+                    <h3 style="font-size: 16px; font-weight: 600; color: #1d1d1f; margin-bottom: 8px;">🩺 Security Audit</h3>
+                    <p style="font-size: 14px; color: #6e6e73; line-height: 1.5;">
+                        One-click scan of your entire agent configuration.<br><br>
+                        <strong style="color: #1d1d1f;">Detects</strong> weak tokens, open groups, and risky settings.<br>
+                        <strong style="color: #1d1d1f;">Ranks</strong> findings by severity — critical first.<br>
+                        <strong style="color: #1d1d1f;">Fixes</strong> most issues with a single click.
                     </p>
                 </div>
                 <div style="background: #fff; border-radius: 12px; padding: 20px;">
