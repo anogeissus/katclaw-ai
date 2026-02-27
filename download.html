@@ -218,7 +218,7 @@
             z-index: 1000;
             padding: 10px 24px;
             border-bottom: 1px solid #d2d2d7;
-            background: transparent;
+            background: #fff;
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
         }
@@ -249,8 +249,9 @@
         .mobile-menu a:last-child { border-bottom: none; }
         .mobile-menu a:active { background: #f0f0f0; }
         @media (max-width: 600px) {
-            .top-nav { border-bottom: none; background: transparent; padding: 0; position: sticky; top: 0; }
+            .top-nav { border-bottom: none; background: #fff; padding: 0; position: sticky; top: 0; }
             .desktop-nav { display: none !important; }
+            .top-nav { background: transparent; border-bottom: none; }
             .mobile-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 12px; }
             .nav-icon-mobile { display: block; }
         }
