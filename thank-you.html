@@ -176,9 +176,97 @@
             .instructions li { font-size: 16px !important; }
             .warning { font-size: 15px !important; }
         }
+
+
+        .nav-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+        .nav-icon {
+            text-decoration: none;
+            vertical-align: middle;
+        }
+
+        /* Top navigation bar */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 24px;
+            border-bottom: 1px solid #d2d2d7;
+            background: rgba(251, 251, 253, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .top-nav-inner { text-align: center; }
+        .top-nav a { color: #0066cc; text-decoration: none; font-size: 14px; }
+        .top-nav a:hover { text-decoration: underline; }
+        .top-nav a.current { font-weight: 600; color: #1d1d1f; }
+        .top-nav .link-separator { color: #d2d2d7; margin: 0 12px; }
+        .mobile-nav { display: none; }
+        .hamburger {
+            background: #fff; border: 1px solid #d2d2d7; border-radius: 8px;
+            font-size: 24px; padding: 4px 12px; cursor: pointer; color: #1d1d1f;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .mobile-nav { position: relative; display: flex; align-items: center; gap: 8px; }
+        .mobile-menu {
+            display: none; flex-direction: column; gap: 0;
+            position: absolute; top: 100%; left: 0; z-index: 100;
+            background: #fff; border: 1px solid #d2d2d7; border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            margin-top: 4px; min-width: 180px; overflow: hidden;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            color: #1d1d1f; text-decoration: none; font-size: 15px;
+            padding: 10px 16px; text-align: left; border-bottom: 1px solid #f0f0f0;
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:active { background: #f0f0f0; }
+        @media (max-width: 600px) {
+            .top-nav { border-bottom: none; background: transparent; padding: 0; position: sticky; top: 8px; }
+            .desktop-nav { display: none !important; }
+            .mobile-nav { display: block; padding: 8px 16px; }
+        }
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="top-nav-inner desktop-nav">
+            <a href="/" class="nav-icon"><img src="Kat-appicon-1024-scaled.png" alt="KatClaw" class="nav-logo"></a><span class="link-separator">|</span>
+            <a href="why-automate.html">Why Automate?</a>
+            <span class="link-separator">|</span>
+            <a href="features.html">Features</a>
+            <span class="link-separator">|</span>
+            <a href="ai-providers.html">AI Providers</a>
+            <span class="link-separator">|</span>
+            <a href="hardware.html">Hardware</a>
+            <span class="link-separator">|</span>
+            <a href="installation-guide.html">Installation</a>
+            <span class="link-separator">|</span>
+            <a href="users-guide.html">User's Guide</a>
+            <span class="link-separator">|</span>
+            <a href="faq.html">FAQ</a>
+            <span class="link-separator">|</span>
+            <a href="troubleshooting.html">Troubleshooting</a>
+        </div>
+        <div class="mobile-nav">
+            <a href="/" class="nav-icon"><img src="Kat-appicon-1024-scaled.png" alt="KatClaw" class="nav-logo"></a><button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">☰</button>
+            <div class="mobile-menu">
+                <a href="why-automate.html">Why Automate?</a>
+                <a href="features.html">Features</a>
+                <a href="ai-providers.html">AI Providers</a>
+                <a href="hardware.html">Hardware</a>
+                <a href="installation-guide.html">Installation</a>
+                <a href="users-guide.html">User's Guide</a>
+                <a href="faq.html">FAQ</a>
+                <a href="troubleshooting.html">Troubleshooting</a>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         <img src="Kat-mascot.png" alt="KatClaw" class="logo">
         
