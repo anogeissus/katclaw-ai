@@ -441,10 +441,12 @@
             .nav-icon-mobile { display: block; }
         }
     
-        /* Widen Lemon Squeezy checkout overlay */
-        .lemonsqueezy-overlay iframe {
-            max-width: 580px !important;
-            width: 90% !important;
+        /* Widen Lemon Squeezy checkout overlay on desktop */
+        @media (min-width: 768px) {
+            .lemonsqueezy-overlay iframe {
+                max-width: 680px !important;
+                width: 680px !important;
+            }
         }
     </style>
     <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
