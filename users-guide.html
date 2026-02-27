@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User's Guide — KatClaw™</title>
+    <meta name="description" content="Learn how to use your KatClaw AI agent — commands, personalization, security, and tips.">
+    <link rel="icon" href="Kat-appicon-1024-scaled.png" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #fff;
+            color: #1d1d1f;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        
+        .back-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 20px 0 8px;
+        }
+        
+        .subtitle {
+            font-size: 17px;
+            color: #6e6e73;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+        
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 40px 0 16px;
+            color: #1d1d1f;
+        }
+        
+        h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin: 24px 0 8px;
+        }
+        
+        p {
+            font-size: 15px;
+            color: #1d1d1f;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        ul, ol {
+            margin: 8px 0 16px 20px;
+        }
+        
+        li {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        
+        .section {
+            border-top: 1px solid #d2d2d7;
+            padding: 24px 0;
+        }
+        
+        code {
+            background: #f5f5f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', SFMono-Regular, Menlo, Monaco, monospace;
+            font-size: 13px;
+        }
+        
+        .command-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 16px;
+        }
+        
+        .command-table td {
+            padding: 10px 12px;
+            font-size: 14px;
+            border-bottom: 1px solid #e5e5e7;
+            vertical-align: top;
+        }
+        
+        .command-table td:first-child {
+            font-family: 'SF Mono', SFMono-Regular, Menlo, Monaco, monospace;
+            font-weight: 600;
+            white-space: nowrap;
+            width: 140px;
+            color: #0071e3;
+        }
+        
+        .command-table td:last-child {
+            color: #6e6e73;
+        }
+        
+        .file-card {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        
+        .file-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'SF Mono', SFMono-Regular, Menlo, Monaco, monospace;
+            margin-bottom: 4px;
+        }
+        
+        .file-card p {
+            font-size: 14px;
+            color: #6e6e73;
+            margin: 0;
+        }
+        
+        .example-list {
+            counter-reset: example;
+            list-style: none;
+            margin-left: 0;
+            padding: 0;
+        }
+        
+        .example-list li {
+            counter-increment: example;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e5e7;
+        }
+        
+        .example-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .example-list li::before {
+            content: counter(example);
+            display: inline-block;
+            background: #0071e3;
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        .example-prompt {
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+        
+        .example-desc {
+            color: #6e6e73;
+            font-size: 14px;
+        }
+        
+        .mode-card {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        
+        .mode-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .mode-card p {
+            font-size: 14px;
+            color: #6e6e73;
+            margin: 0;
+        }
+        
+        .mode-card .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .badge-green { background: #d4edda; color: #155724; }
+        .badge-yellow { background: #fff3cd; color: #856404; }
+        .badge-red { background: #f8d7da; color: #721c24; }
+        
+        .tip {
+            background: #f0f7ff;
+            border-left: 3px solid #0071e3;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+        
+        .tip p {
+            font-size: 14px;
+            color: #1d1d1f;
+            margin: 0;
+        }
+        
+        .troubleshoot-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e5e7;
+        }
+        
+        .troubleshoot-item:last-child { border-bottom: none; }
+        
+        .troubleshoot-item strong {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        
+        .troubleshoot-item p {
+            font-size: 14px;
+            color: #6e6e73;
+            margin: 0;
+        }
+        
+        .cta {
+            text-align: center;
+            margin-top: 28px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #0071e3;
+            color: #fff;
+            padding: 10px 24px;
+            font-size: 15px;
+            font-weight: 400;
+            text-decoration: none;
+            border-radius: 980px;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover { background: #0077ed; color: #fff; }
+        
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #86868b;
+            font-size: 13px;
+            border-top: 1px solid #d2d2d7;
+            margin-top: 40px;
+        }
+        
+        .footer a { color: #86868b; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 28px; }
+            .subtitle { font-size: 16px; }
+            .back-link { font-size: 17px; }
+            p, li { font-size: 16px; }
+            h3 { font-size: 18px; }
+            .command-table td { font-size: 15px; }
+            .command-table td:first-child { width: auto; display: block; padding-bottom: 2px; border: none; }
+            .command-table td:last-child { display: block; padding-top: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to KatClaw</a>
+        
+        <h1>User's Guide</h1>
+        <p class="subtitle">Everything you need to know about working with your AI agent.</p>
+        
+        <!-- Getting Started -->
+        <h2>Getting Started</h2>
+        
+        <div class="section">
+            <h3>Your First Conversation</h3>
+            <p>Open Telegram, find your bot, and type <strong>"hi"</strong>. That's it — your agent will respond.</p>
+            <p>Your AI agent runs locally on your Mac. When you send a message in Telegram, it travels through a secure gateway to OpenClaw running on your machine. The agent processes your request using the AI provider you configured, and sends the response back to Telegram.</p>
+            <p>Your Mac needs to be awake and connected to the internet for the agent to respond. KatClaw can auto-start the gateway when you log in, so you don't have to think about it.</p>
+        </div>
+        
+        <!-- Essential Commands -->
+        <h2>Essential Commands</h2>
+        
+        <div class="section">
+            <p>Type these commands in Telegram to control your agent:</p>
+            <table class="command-table">
+                <tr>
+                    <td>/new</td>
+                    <td>Start a fresh conversation. Clears the current context so you can begin a new topic. Also works as <code>/reset</code>.</td>
+                </tr>
+                <tr>
+                    <td>/status</td>
+                    <td>Check your agent's status — which AI model is active, token usage, and gateway health.</td>
+                </tr>
+                <tr>
+                    <td>/model</td>
+                    <td>Switch between AI models. Jump from Claude to GPT to Gemini without restarting anything.</td>
+                </tr>
+                <tr>
+                    <td>/reasoning</td>
+                    <td>Toggle extended thinking. When enabled, the agent takes more time to reason through complex problems.</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Personalizing Your Agent -->
+        <h2>Personalizing Your Agent</h2>
+        
+        <div class="section">
+            <p>Your agent reads a set of markdown files to understand who it is, who you are, and how to behave. These files live in <code>~/.openclaw/workspace/</code>.</p>
+            
+            <div class="file-card">
+                <h4>SOUL.md</h4>
+                <p>Defines your agent's personality, tone, and behavior. Want it formal? Casual? Funny? This is where you set that. The agent embodies whatever persona you describe here.</p>
+            </div>
+            
+            <div class="file-card">
+                <h4>USER.md</h4>
+                <p>Tell the agent about yourself — your name, preferences, work context, timezone. The more it knows, the more helpful it can be without asking.</p>
+            </div>
+            
+            <div class="file-card">
+                <h4>AGENTS.md</h4>
+                <p>Workspace rules and conventions. How the agent should handle files, memory, safety, and external actions. Think of it as the operating manual.</p>
+            </div>
+            
+            <div class="tip">
+                <p>💡 You can edit these files manually, or just ask your agent: <em>"Update SOUL.md to be more casual and use humor."</em> It can edit its own configuration files.</p>
+            </div>
+        </div>
+        
+        <!-- 10 Example Tasks -->
+        <h2>10 Things to Try</h2>
+        
+        <div class="section">
+            <p>Your agent can do much more than answer questions. Here are some real tasks to try:</p>
+            
+            <ol class="example-list">
+                <li>
+                    <span class="example-prompt">"Summarize my unread emails"</span><br>
+                    <span class="example-desc">Connects to your email and gives you a quick digest of what's new.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"What's on my calendar today?"</span><br>
+                    <span class="example-desc">Checks your calendar and lists upcoming events with times.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"Search the web for latest news on [topic]"</span><br>
+                    <span class="example-desc">Searches the web and summarizes what it finds.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"Remind me in 30 minutes to call John"</span><br>
+                    <span class="example-desc">Sets a timed reminder that pings you in Telegram.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"Write a Python script that converts CSV to JSON"</span><br>
+                    <span class="example-desc">Generates working code and can save it to a file on your Mac.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"What's the weather in Vancouver?"</span><br>
+                    <span class="example-desc">Gets the current weather and forecast for any location.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"Read the file at ~/Documents/notes.txt and summarize it"</span><br>
+                    <span class="example-desc">Reads files on your Mac and works with their contents.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"Create a new file called todo.md with my task list"</span><br>
+                    <span class="example-desc">Creates and writes files directly on your system.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"Check my GitHub PRs"</span><br>
+                    <span class="example-desc">Lists your open pull requests, CI status, and review comments.</span>
+                </li>
+                <li>
+                    <span class="example-prompt">"Take a screenshot of my desktop"</span><br>
+                    <span class="example-desc">Captures your screen and sends the image to Telegram.</span>
+                </li>
+            </ol>
+        </div>
+        
+        <!-- Security Modes -->
+        <h2>Security Modes</h2>
+        
+        <div class="section">
+            <p>KatClaw lets you control exactly what your agent can do on your system. Choose the level that fits your comfort:</p>
+            
+            <div class="mode-card">
+                <h4>🛡️ Conservative <span class="badge badge-green">Safest</span></h4>
+                <p>No shell access at all. The agent can chat, search the web, and use built-in tools, but cannot run any commands on your system. Best for getting started.</p>
+            </div>
+            
+            <div class="mode-card">
+                <h4>⚖️ Moderate <span class="badge badge-yellow">Balanced</span></h4>
+                <p>Only allows commands you explicitly approve in an allowlist. The agent can run <code>git status</code> but not <code>rm -rf</code>. You decide exactly what's permitted. Good for daily use.</p>
+            </div>
+            
+            <div class="mode-card">
+                <h4>⚡ Full Access <span class="badge badge-red">Power Users</span></h4>
+                <p>Unrestricted system access. The agent can run any command, install packages, modify files anywhere. Only use this if you understand the implications.</p>
+            </div>
+            
+            <div class="tip">
+                <p>💡 You can change security modes anytime in KatClaw's settings. Start with Conservative and move up as you build trust.</p>
+            </div>
+        </div>
+        
+        <!-- Dashboard & Menu Bar -->
+        <h2>Dashboard &amp; Menu Bar</h2>
+        
+        <div class="section">
+            <p>KatClaw lives in your Mac's menu bar. Click the icon to access the dashboard:</p>
+            <ul>
+                <li><strong>Start / Stop Gateway</strong> — Control whether your agent is online and accepting messages.</li>
+                <li><strong>Agent Status</strong> — See which model is active, uptime, and recent activity.</li>
+                <li><strong>Security Audit</strong> — Review what commands the agent has run and adjust permissions.</li>
+                <li><strong>Backup &amp; Restore</strong> — Export your entire setup (configs, workspace, memories) to a single file. Restore on any Mac with one click.</li>
+            </ul>
+        </div>
+        
+        <!-- Troubleshooting -->
+        <h2>Troubleshooting</h2>
+        
+        <div class="section">
+            <div class="troubleshoot-item">
+                <strong>Agent not responding?</strong>
+                <p>Open KatClaw from the menu bar and check if the gateway is running. If it's stopped, click <strong>Start Gateway</strong>. Also make sure your Mac is awake and connected to the internet.</p>
+            </div>
+            
+            <div class="troubleshoot-item">
+                <strong>Commands being blocked?</strong>
+                <p>You're likely in Conservative or Moderate security mode. Check your security settings in KatClaw. In Moderate mode, you can add specific commands to the allowlist.</p>
+            </div>
+            
+            <div class="troubleshoot-item">
+                <strong>High token usage?</strong>
+                <p>Long conversations accumulate context. Send <code>/new</code> to start fresh when switching topics. This resets the conversation and reduces token consumption.</p>
+            </div>
+            
+            <div class="troubleshoot-item">
+                <strong>API key not working?</strong>
+                <p>Double-check that your API key is valid and has credits. You can update your API key anytime in KatClaw's provider settings without re-running the setup wizard.</p>
+            </div>
+            
+            <div class="troubleshoot-item">
+                <strong>Need more help?</strong>
+                <p>Email <strong>support@katclaw.ai</strong> and we'll get back to you promptly. Check the <a href="/faq">FAQ</a> for more common questions.</p>
+            </div>
+        </div>
+        
+        <div class="cta">
+            <a href="/" class="cta-button">← Back to Home</a>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        Built by <a href="https://apollooneapp.com" target="_blank">Anogeissus</a> · © 2026<br>
+        <a href="privacy.html" style="margin-right: 12px;">Privacy</a>
+        <a href="termsofuse.html" style="margin-right: 12px;">Terms of Use</a>
+        <a href="refund.html">Refund Policy</a>
+    </footer>
+</body>
+</html>

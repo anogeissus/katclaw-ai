@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Guide — KatClaw™</title>
+    <meta name="description" content="Step-by-step guide to installing KatClaw on your Mac. From download to your first conversation.">
+    <link rel="icon" href="Kat-appicon-1024-scaled.png" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #fff;
+            color: #1d1d1f;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        
+        .back-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 20px 0 8px;
+        }
+        
+        .subtitle {
+            font-size: 17px;
+            color: #6e6e73;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+        
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 40px 0 16px;
+            color: #1d1d1f;
+        }
+        
+        p {
+            font-size: 15px;
+            color: #1d1d1f;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        ul, ol {
+            margin: 8px 0 16px 20px;
+        }
+        
+        li {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        
+        .requirements-box {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+        }
+        
+        .requirements-box h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .requirements-box ul {
+            margin: 0 0 0 20px;
+        }
+        
+        .requirements-box li {
+            font-size: 14px;
+            color: #6e6e73;
+        }
+        
+        .step {
+            border-top: 1px solid #d2d2d7;
+            padding: 24px 0;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #0071e3;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        .step-title {
+            display: inline;
+            font-size: 17px;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+        
+        .step p {
+            margin-top: 12px;
+        }
+        
+        .screenshot-placeholder {
+            background: #e5e5e7;
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: #86868b;
+            margin: 16px auto;
+        }
+        
+        code {
+            background: #f5f5f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', SFMono-Regular, Menlo, Monaco, monospace;
+            font-size: 13px;
+        }
+        
+        .tip {
+            background: #f0f7ff;
+            border-left: 3px solid #0071e3;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+        
+        .tip p {
+            font-size: 14px;
+            color: #1d1d1f;
+            margin: 0;
+        }
+        
+        .cta {
+            text-align: center;
+            margin-top: 28px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #0071e3;
+            color: #fff;
+            padding: 10px 24px;
+            font-size: 15px;
+            font-weight: 400;
+            text-decoration: none;
+            border-radius: 980px;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover { background: #0077ed; color: #fff; }
+        
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #86868b;
+            font-size: 13px;
+            border-top: 1px solid #d2d2d7;
+            margin-top: 40px;
+        }
+        
+        .footer a { color: #86868b; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 28px; }
+            .subtitle { font-size: 16px; }
+            .back-link { font-size: 17px; }
+            p, li { font-size: 16px; }
+            .step-title { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to KatClaw</a>
+        
+        <h1>Installation Guide</h1>
+        <p class="subtitle">From download to your first conversation in about 10 minutes.</p>
+        
+        <div class="requirements-box">
+            <h3>Requirements</h3>
+            <ul>
+                <li>macOS 14 Sonoma or later</li>
+                <li>Apple Silicon or Intel Mac</li>
+                <li>Internet connection</li>
+                <li>AI provider API key (e.g., Claude, GPT, Gemini, DeepSeek)</li>
+                <li>Telegram account (for messaging)</li>
+            </ul>
+        </div>
+        
+        <!-- Step 1 -->
+        <div class="step">
+            <span class="step-number">1</span>
+            <span class="step-title">Download &amp; Install</span>
+            <p>Download the KatClaw DMG from <a href="/download">katclaw.ai/download</a>. Open the DMG, drag KatClaw to your Applications folder, and launch it.</p>
+            <p>On first launch, macOS may ask you to confirm since the app was downloaded from the internet. Click <strong>Open</strong> to proceed.</p>
+            <div class="screenshot-placeholder">📷 Screenshot: Download &amp; Install</div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="step">
+            <span class="step-number">2</span>
+            <span class="step-title">Welcome</span>
+            <p>The Setup Wizard opens automatically on first launch. This screen introduces what KatClaw does and what you'll configure in the next few steps: your license, AI provider, and messaging channel.</p>
+            <div class="screenshot-placeholder">📷 Screenshot: Welcome</div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="step">
+            <span class="step-number">3</span>
+            <span class="step-title">License Activation</span>
+            <p>Enter your license key if you already have one (founding or purchased). If you don't have a key yet, you can claim a free founding license right from this screen.</p>
+            <div class="tip">
+                <p>💡 Founding licenses are free and include all features. <a href="/purchase">Claim yours →</a></p>
+            </div>
+            <div class="screenshot-placeholder">📷 Screenshot: License Activation</div>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="step">
+            <span class="step-number">4</span>
+            <span class="step-title">Install Mode</span>
+            <p>Choose how you want to run OpenClaw:</p>
+            <ul>
+                <li><strong>Standard</strong> — Install directly on this Mac. Best for most users.</li>
+                <li><strong>Virtual Machine</strong> — Install inside a Parallels VM for extra isolation. Advanced users who want a sandboxed environment.</li>
+            </ul>
+            <div class="screenshot-placeholder">📷 Screenshot: Install Mode</div>
+        </div>
+        
+        <!-- Step 5 -->
+        <div class="step">
+            <span class="step-number">5</span>
+            <span class="step-title">Prerequisites</span>
+            <p>KatClaw checks that Node.js and npm are installed on your system. If they're missing, KatClaw will offer to install them for you automatically.</p>
+            <p>If you already have Node.js installed, this step completes instantly.</p>
+            <div class="screenshot-placeholder">📷 Screenshot: Prerequisites</div>
+        </div>
+        
+        <!-- Step 6 -->
+        <div class="step">
+            <span class="step-number">6</span>
+            <span class="step-title">AI Provider (API Keys)</span>
+            <p>Choose your AI provider and enter your API key. KatClaw supports 8 providers:</p>
+            <ul>
+                <li><strong>Claude</strong> (Anthropic)</li>
+                <li><strong>GPT</strong> (OpenAI)</li>
+                <li><strong>Gemini</strong> (Google)</li>
+                <li><strong>DeepSeek</strong></li>
+                <li><strong>Grok</strong> (xAI)</li>
+                <li><strong>Kimi</strong> (Moonshot)</li>
+                <li><strong>OpenRouter</strong> (multi-model gateway)</li>
+                <li><strong>Antigravity</strong></li>
+            </ul>
+            <p>Each provider card shows where to get your API key. Pick one, paste your key, and KatClaw verifies it works.</p>
+            <div class="tip">
+                <p>💡 Not sure which to pick? <a href="/ai-providers">Compare providers and costs →</a></p>
+            </div>
+            <div class="screenshot-placeholder">📷 Screenshot: AI Provider</div>
+        </div>
+        
+        <!-- Step 7 -->
+        <div class="step">
+            <span class="step-number">7</span>
+            <span class="step-title">Channels</span>
+            <p>Choose your messaging platform — this is how you'll chat with your AI agent:</p>
+            <ul>
+                <li><strong>Telegram</strong> — Most popular. Free, fast, works on all devices.</li>
+                <li><strong>WeCom</strong> — Enterprise messaging for teams in China.</li>
+            </ul>
+            <p>KatClaw generates a secure gateway token that connects your messaging platform to OpenClaw running on your Mac.</p>
+            <div class="screenshot-placeholder">📷 Screenshot: Channels</div>
+        </div>
+        
+        <!-- Step 8 -->
+        <div class="step">
+            <span class="step-number">8</span>
+            <span class="step-title">Telegram Setup</span>
+            <p>If you chose Telegram, you'll set up a bot:</p>
+            <ol>
+                <li>Open Telegram and search for <strong>@BotFather</strong></li>
+                <li>Send <code>/newbot</code> and follow the prompts to create your bot</li>
+                <li>Copy the bot token BotFather gives you</li>
+                <li>Paste it into KatClaw</li>
+                <li>Set your <strong>allowed senders</strong> — your Telegram user ID or username, so only you can message the bot</li>
+            </ol>
+            <div class="tip">
+                <p>💡 To find your Telegram user ID, message <strong>@userinfobot</strong> on Telegram.</p>
+            </div>
+            <div class="screenshot-placeholder">📷 Screenshot: Telegram Setup</div>
+        </div>
+        
+        <!-- Step 9 -->
+        <div class="step">
+            <span class="step-number">9</span>
+            <span class="step-title">Installation</span>
+            <p>KatClaw now installs OpenClaw automatically. You'll see a progress screen as it:</p>
+            <ul>
+                <li>Downloads and installs the OpenClaw package</li>
+                <li>Configures your AI provider and API key</li>
+                <li>Sets up the Telegram bot connection</li>
+                <li>Applies security settings</li>
+            </ul>
+            <p>This usually takes 1–2 minutes depending on your internet connection.</p>
+            <div class="screenshot-placeholder">📷 Screenshot: Installation Progress</div>
+        </div>
+        
+        <!-- Step 10 -->
+        <div class="step">
+            <span class="step-number">10</span>
+            <span class="step-title">Complete!</span>
+            <p>You're all set. The OpenClaw gateway is running and your Telegram bot is live.</p>
+            <p>Open Telegram, find your bot, and send your first message. Try saying <strong>"hi"</strong> — your AI agent will respond.</p>
+            <p>KatClaw now lives in your menu bar. Click the icon anytime to check status, change settings, or manage your agent.</p>
+            <div class="screenshot-placeholder">📷 Screenshot: Setup Complete</div>
+        </div>
+        
+        <div class="cta" style="margin-top: 40px;">
+            <p style="color: #6e6e73; margin-bottom: 16px;">Ready to get the most out of your agent?</p>
+            <a href="/users-guide" class="cta-button">Read the User's Guide →</a>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        Built by <a href="https://apollooneapp.com" target="_blank">Anogeissus</a> · © 2026<br>
+        <a href="privacy.html" style="margin-right: 12px;">Privacy</a>
+        <a href="termsofuse.html" style="margin-right: 12px;">Terms of Use</a>
+        <a href="refund.html">Refund Policy</a>
+    </footer>
+</body>
+</html>
