@@ -231,15 +231,21 @@
             background: none; border: 1px solid #d2d2d7; border-radius: 8px;
             font-size: 24px; padding: 4px 12px; cursor: pointer; color: #1d1d1f;
         }
+        .mobile-nav { position: relative; }
         .mobile-menu {
-            display: none; flex-direction: column; gap: 8px;
-            margin-top: 8px; padding: 12px 0;
+            display: none; flex-direction: column; gap: 0;
+            position: absolute; top: 100%; left: 0; z-index: 100;
+            background: #fff; border: 1px solid #d2d2d7; border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            margin-top: 4px; min-width: 180px; overflow: hidden;
         }
         .mobile-menu.open { display: flex; }
         .mobile-menu a {
-            color: #0066cc; text-decoration: none; font-size: 16px; padding: 4px 0;
-            text-align: left;
+            color: #1d1d1f; text-decoration: none; font-size: 15px;
+            padding: 10px 16px; text-align: left; border-bottom: 1px solid #f0f0f0;
         }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:active { background: #f0f0f0; }
         @media (max-width: 600px) {
             .desktop-nav { display: none !important; }
             .mobile-nav { display: block; }
