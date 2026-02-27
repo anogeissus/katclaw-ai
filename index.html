@@ -206,19 +206,39 @@
             .back-link, .text-link { font-size: 17px !important; }
         }
 
+        /* Top navigation bar */
+        .top-nav {
+            padding: 10px 24px;
+            border-bottom: 1px solid #d2d2d7;
+            background: #fbfbfd;
+        }
+        .top-nav-inner {
+            text-align: center;
+        }
+        .top-nav a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .top-nav a:hover { text-decoration: underline; }
+        .top-nav .link-separator {
+            color: #d2d2d7;
+            margin: 0 12px;
+        }
         /* Mobile hamburger nav */
-        .mobile-nav { display: none; margin-top: 12px; }
+        .mobile-nav { display: none; }
         .hamburger {
             background: none; border: 1px solid #d2d2d7; border-radius: 8px;
-            font-size: 24px; padding: 6px 14px; cursor: pointer; color: #1d1d1f;
+            font-size: 24px; padding: 4px 12px; cursor: pointer; color: #1d1d1f;
         }
         .mobile-menu {
-            display: none; flex-direction: column; gap: 12px;
-            margin-top: 12px; padding: 16px; background: #f5f5f7; border-radius: 12px;
+            display: none; flex-direction: column; gap: 8px;
+            margin-top: 8px; padding: 12px 0;
         }
         .mobile-menu.open { display: flex; }
         .mobile-menu a {
             color: #0066cc; text-decoration: none; font-size: 16px; padding: 4px 0;
+            text-align: left;
         }
         @media (max-width: 600px) {
             .desktop-nav { display: none !important; }
@@ -227,6 +247,33 @@
     </style>
 </head>
 <body>
+    <!-- Top navigation bar -->
+    <nav class="top-nav">
+        <div class="top-nav-inner desktop-nav">
+            <a href="features.html">Features</a>
+            <span class="link-separator">|</span>
+            <a href="faq.html">FAQ</a>
+            <span class="link-separator">|</span>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <span class="link-separator">|</span>
+            <a href="why-automate.html">Why Automate?</a>
+            <span class="link-separator">|</span>
+            <a href="hardware.html">Hardware</a>
+            <span class="link-separator">|</span>
+            <a href="ai-providers.html">AI Providers</a>
+        </div>
+        <div class="mobile-nav">
+            <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">☰</button>
+            <div class="mobile-menu">
+                <a href="features.html">Features</a>
+                <a href="faq.html">FAQ</a>
+                <a href="troubleshooting.html">Troubleshooting</a>
+                <a href="why-automate.html">Why Automate?</a>
+                <a href="hardware.html">Hardware</a>
+                <a href="ai-providers.html">AI Providers</a>
+            </div>
+        </div>
+    </nav>
     <section class="hero">
         <img src="Kat-mascot.png" alt="KatClaw mascot" class="logo">
         <h1>KatClaw<sup style="font-size: 0.35em; vertical-align: super; font-weight: 400;">™</sup></h1>
@@ -242,32 +289,7 @@
         <p class="price">🎁 <strong>FREE</strong> for the first 100 users</p>
         <p style="font-size: 13px; color: #6e6e73; margin-top: 4px;">AI provider required separately · Most users spend $1–10/mo · <a href="ai-providers.html" style="color: #0066cc; text-decoration: none;">Free options available →</a></p>
         
-        <!-- Desktop nav links -->
-        <div class="links desktop-nav">
-            <a href="features.html" class="text-link">Features</a>
-            <span class="link-separator">|</span>
-            <a href="faq.html" class="text-link">FAQ</a>
-            <span class="link-separator">|</span>
-            <a href="troubleshooting.html" class="text-link">Troubleshooting</a>
-            <span class="link-separator">|</span>
-            <a href="why-automate.html" class="text-link">Why Automate?</a>
-            <span class="link-separator">|</span>
-            <a href="hardware.html" class="text-link">Hardware</a>
-            <span class="link-separator">|</span>
-            <a href="ai-providers.html" class="text-link">AI Providers</a>
-        </div>
-        <!-- Mobile hamburger menu -->
-        <div class="mobile-nav">
-            <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">☰</button>
-            <div class="mobile-menu">
-                <a href="features.html">Features</a>
-                <a href="faq.html">FAQ</a>
-                <a href="troubleshooting.html">Troubleshooting</a>
-                <a href="why-automate.html">Why Automate?</a>
-                <a href="hardware.html">Hardware</a>
-                <a href="ai-providers.html">AI Providers</a>
-            </div>
-        </div>
+
     </section>
     
     <section class="features-section">
