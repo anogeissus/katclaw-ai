@@ -223,7 +223,7 @@
             font-size: 24px; padding: 4px 12px; cursor: pointer; color: #1d1d1f;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-        .mobile-nav { position: relative; display: flex; align-items: center; gap: 8px; }
+        .mobile-nav { position: relative; }
         .mobile-menu {
             display: none; flex-direction: column; gap: 0;
             position: absolute; top: 100%; left: 0; z-index: 100;
@@ -241,7 +241,7 @@
         @media (max-width: 600px) {
             .top-nav { border-bottom: none; background: transparent; padding: 0; position: sticky; top: 8px; }
             .desktop-nav { display: none !important; }
-            .mobile-nav { display: block; padding: 8px 16px; }
+            .mobile-nav { display: flex; align-items: center; gap: 8px; padding: 8px 16px; }
         }
     </style>
 </head>
