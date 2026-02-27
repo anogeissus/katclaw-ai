@@ -256,6 +256,16 @@
             vertical-align: middle;
         }
 
+        .nav-logo-mobile {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+        .nav-icon-mobile {
+            text-decoration: none;
+            display: none;
+        }
+
         /* Top navigation bar */
         .top-nav {
             position: sticky;
@@ -296,7 +306,8 @@
         @media (max-width: 600px) {
             .top-nav { border-bottom: none; background: transparent; padding: 0; position: sticky; top: 8px; }
             .desktop-nav { display: none !important; }
-            .mobile-nav { display: flex; align-items: center; gap: 8px; padding: 8px 16px; }
+            .mobile-nav { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; }
+            .nav-icon-mobile { display: block; }
         }
     </style>
 </head>
@@ -321,7 +332,7 @@
             <a href="troubleshooting.html">Troubleshooting</a>
         </div>
         <div class="mobile-nav">
-            <a href="/" class="nav-icon"><img src="Kat-appicon-1024-scaled.png" alt="KatClaw" class="nav-logo"></a><button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">☰</button>
+            <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">☰</button>
             <div class="mobile-menu">
                 <a href="why-automate.html">Why Automate?</a>
                 <a href="features.html">Features</a>
@@ -332,6 +343,7 @@
                 <a href="faq.html" class="current">FAQ</a>
                 <a href="troubleshooting.html">Troubleshooting</a>
             </div>
+            <a href="/" class="nav-icon-mobile"><img src="Kat-appicon-1024-scaled.png" alt="KatClaw" class="nav-logo-mobile"></a>
         </div>
     </nav>
     <div class="container">
