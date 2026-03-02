@@ -641,7 +641,9 @@
                 const remaining = document.getElementById("remaining-text");
                 
                 if (data.remaining <= 0) {
-                    plan.classList.add("plan-hidden");
+                    remaining.textContent = "0 of 100 remaining — all claimed!";
+                    document.getElementById("founding-button").disabled = true;
+                    document.getElementById("founding-button").textContent = "All Claimed";
                 } else {
                     remaining.textContent = `${data.remaining} of 100 remaining`;
                 }
@@ -693,6 +695,13 @@
                 clearTimeout(timeout);
                 const data = await res.json();
 
+                if (res.status === 410) {
+                    errEl.textContent = "";
+                    document.getElementById("modal").classList.remove("active");
+                    alert("All 100 founding licenses have been claimed! Thank you for your interest — you can still get KatClaw with our standard license.");
+                    checkFoundingAvailability();
+                    return;
+                }
                 if (!res.ok) {
                     errEl.textContent = data.error || "Failed to send code";
                     btn.disabled = false;
@@ -736,6 +745,13 @@
                 });
                 const data = await res.json();
 
+                if (res.status === 410) {
+                    errEl.textContent = "";
+                    document.getElementById("modal").classList.remove("active");
+                    alert("All 100 founding licenses have been claimed! Thank you for your interest — you can still get KatClaw with our standard license.");
+                    checkFoundingAvailability();
+                    return;
+                }
                 if (!res.ok) {
                     errEl.textContent = data.error || "Verification failed";
                     btn.disabled = false;
@@ -814,6 +830,13 @@
                 });
                 const data = await res.json();
 
+                if (res.status === 410) {
+                    errEl.textContent = "";
+                    document.getElementById("modal").classList.remove("active");
+                    alert("All 100 founding licenses have been claimed! Thank you for your interest — you can still get KatClaw with our standard license.");
+                    checkFoundingAvailability();
+                    return;
+                }
                 if (!res.ok) {
                     errEl.textContent = data.error || "Failed to send code";
                     btn.disabled = false;
@@ -858,6 +881,13 @@
                 });
                 const data = await res.json();
 
+                if (res.status === 410) {
+                    errEl.textContent = "";
+                    document.getElementById("modal").classList.remove("active");
+                    alert("All 100 founding licenses have been claimed! Thank you for your interest — you can still get KatClaw with our standard license.");
+                    checkFoundingAvailability();
+                    return;
+                }
                 if (!res.ok) {
                     errEl.textContent = data.error || "Verification failed";
                     btn.disabled = false;
