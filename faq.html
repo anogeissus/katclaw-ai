@@ -799,7 +799,7 @@
                     const isActive = machineCount > 0;
 
                     return `
-                    <div class="key-box" id="license-${l.id}" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="key-box" id="license-${l.key}" style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
                             <div class="key-label">${tierLabel} License</div>
                             <div class="key-value" style="font-size: 15px;">${maskedKey}</div>
@@ -807,7 +807,7 @@
                                 ${isActive ? `🟢 Active (${machineCount} machine${machineCount > 1 ? 's' : ''})` : '⚪ Not activated'}
                             </div>
                         </div>
-                        ${isActive ? `<button class="modal-button" style="background: #e94560; padding: 8px 16px; font-size: 13px; width: auto; margin: 0;" onclick="deactivateLicense('${l.id}', this)">Deactivate</button>` : ''}
+                        ${isActive ? `<button class="modal-button" style="background: #e94560; padding: 8px 16px; font-size: 13px; width: auto; margin: 0;" onclick="deactivateLicense('${l.key}', this)">Deactivate</button>` : ''}
                     </div>
                     `;
                 }).join("");
@@ -821,15 +821,15 @@
             }
         }
 
-        async function deactivateLicense(licenseId, btnEl) {
+        async function deactivateLicense(licenseKey, btnEl) {
             btnEl.disabled = true;
             btnEl.textContent = "Deactivating…";
 
             try {
-                const res = await fetch(`${WORKER_URL}/license/deactivate`, {
+                const res = await fetch(`${WORKER_URL}/license/remote-deactivate`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: deactivateEmail, code: deactivateCode, licenseId })
+                    body: JSON.stringify({ email: deactivateEmail, code: deactivateCode, licenseKey })
                 });
                 const data = await res.json();
 
@@ -840,7 +840,7 @@
                 }
 
                 // Update UI for this license
-                const box = document.getElementById(`license-${licenseId}`);
+                const box = document.getElementById(`license-${licenseKey}`);
                 const statusEl = box.querySelector("div > div:last-child");
                 statusEl.style.color = "#34c759";
                 statusEl.textContent = "✓ Deactivated — ready to activate on new Mac";
