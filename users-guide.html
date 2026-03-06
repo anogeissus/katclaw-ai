@@ -535,6 +535,38 @@
             </div>
         </div>
         
+        <!-- Skills -->
+        <h2>Skills</h2>
+        
+        <div class="section">
+            <p>Skills are modular capabilities that extend what your agent can do. Think of them as plugins — each skill teaches your agent a specific workflow, from GitHub automation to weather lookups to photo editing.</p>
+            
+            <h3>Managing Skills</h3>
+            <p>Click <strong>Skills</strong> on the Dashboard to open the Skills Manager. You'll see three tabs:</p>
+            <ul>
+                <li><strong>Installed</strong> — All skills currently available to your agent. Toggle any skill on or off. Skills show as "Ready" (all dependencies met) or "Missing" (needs setup). OpenClaw ships with 50+ bundled skills.</li>
+                <li><strong>Browse</strong> — Search and install community skills from <a href="https://clawhub.com">ClawHub</a>. Every skill is scanned by VirusTotal — suspicious ones require confirmation before install.</li>
+                <li><strong>Custom</strong> — Create your own skills with a built-in SKILL.md editor. Define triggers, commands, and documentation for domain-specific workflows.</li>
+            </ul>
+            
+            <h3>What Skills Can Do</h3>
+            <p>Skills give your agent specialized knowledge and tools. Some examples:</p>
+            <ul>
+                <li><strong>coding-agent</strong> — Delegate coding tasks to Claude Code or Codex in the background</li>
+                <li><strong>github</strong> — Create issues, review PRs, check CI status via the <code>gh</code> CLI</li>
+                <li><strong>weather</strong> — Get forecasts for any location without an API key</li>
+                <li><strong>openai-whisper-api</strong> — Transcribe audio files to text</li>
+                <li><strong>self-improving-agent</strong> — Community skill that captures learnings for continuous improvement</li>
+            </ul>
+            
+            <h3>Creating Custom Skills</h3>
+            <p>Open the <strong>Custom</strong> tab, click <strong>+</strong>, and write a SKILL.md file. The file uses YAML frontmatter for metadata (name, description) followed by Markdown documentation. Your agent reads this file to learn when and how to use the skill.</p>
+            
+            <div class="tip">
+                <p>💡 You can also ask your agent to create skills for you: <em>"Create a skill for managing my Docker containers."</em> It will write the SKILL.md and save it to the custom skills folder.</p>
+            </div>
+        </div>
+        
         <!-- Dashboard & Menu Bar -->
         <h2>Dashboard &amp; Menu Bar</h2>
         
