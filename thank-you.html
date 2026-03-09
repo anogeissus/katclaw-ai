@@ -333,9 +333,9 @@
         const WORKER_URL = "https://api.katclaw.ai";
 
         async function init() {
-            // Paddle appends _ptxn= to the success URL
             const params = new URLSearchParams(window.location.search);
-            const transactionId = params.get("_ptxn");
+            // Lemon Squeezy uses order_id, Paddle used _ptxn
+            const transactionId = params.get("order_id") || params.get("_ptxn");
 
             if (!transactionId) {
                 showError("No transaction found. If you just completed checkout, please wait a moment and refresh this page.");
