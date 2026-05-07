@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get KatClaw™ — Purchase a License</title>
-    <meta name="description" content="Get your KatClaw license. Free for the first 100 founding users, then US$49.">
+    <meta name="description" content="Get your KatClaw license. Free for the first 100 founding users, then US$19.99.">
     <link rel="icon" href="Kat-appicon-1024-scaled.png" type="image/png">
     <link rel="canonical" href="https://katclaw.ai/purchase.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://katclaw.ai/purchase.html">
     <meta property="og:title" content="Get KatClaw™ — One-Time License for macOS AI Automation">
-    <meta property="og:description" content="Get your KatClaw license. Free for the first 100 founding users, then US$49.">
+    <meta property="og:description" content="Get your KatClaw license. Free for the first 100 founding users, then US$19.99.">
     <meta property="og:image" content="https://katclaw.ai/Kat-appicon-1024-scaled.png">
     <meta property="og:site_name" content="KatClaw">
     <style>
@@ -526,10 +526,9 @@
         <h1>Get KatClaw</h1>
         <p class="subtitle">One-time purchase. No subscription. Free updates forever.</p>
         
-        <!-- Spring promo banner — remove after March 31 UTC -->
         <div class="promo-banner" id="promo-banner">
-            🌸 <strong>Spring Sale — 40% off!</strong> Use code <span class="promo-code">SPRING40</span> at checkout.
-            <div class="promo-expires">Ends March 31, 2026</div>
+            🎬 <strong>YouTuber Review Promo:</strong> Limited-time <strong>US$9.99</strong> with promo code at checkout.
+            <div class="promo-expires">Promo code and end date announced with the review drop.</div>
         </div>
 
         <div class="plans">
@@ -554,11 +553,8 @@
             <!-- Standard License -->
             <div class="plan">
                 <h2 style="margin-top: 12px;">Standard License</h2>
-                <div class="plan-price">
-                    <span class="price-original">US$49</span>
-                    <span class="price-new"><span class="currency">US$</span>29.40</span>
-                </div>
-                <p class="plan-note">One-time payment with code <strong>SPRING40</strong>.<br>Less than 2 months of ChatGPT Plus.</p>
+                <div class="plan-price"><span class="currency">US$</span>19.99</div>
+                <p class="plan-note">One-time payment.<br>Less than 1 month of ChatGPT Plus.</p>
                 <ul class="plan-features">
                     <li>All features included</li>
                     <li>Lifetime license, no expiry</li>
@@ -682,25 +678,8 @@
             }
         });
 
-        // Auto-hide promo after expiry (March 31 2026 23:59 UTC)
-        (function() {
-            const promoExpiry = new Date("2026-04-01T00:00:00Z"); // Mar 31 23:59 UTC = Apr 1 00:00 UTC
-            if (Date.now() >= promoExpiry.getTime()) {
-                const banner = document.getElementById("promo-banner");
-                if (banner) banner.style.display = "none";
-                // Revert price display
-                const priceDiv = document.querySelector(".plan-price");
-                // Find the second plan's price (standard)
-                const plans = document.querySelectorAll(".plan-price");
-                if (plans.length >= 2) {
-                    plans[1].innerHTML = '<span class="currency">US$</span>49';
-                }
-                const note = document.querySelectorAll(".plan-note");
-                if (note.length >= 2) {
-                    note[1].innerHTML = 'One-time payment.<br>Less than 3 months of ChatGPT Plus.';
-                }
-            }
-        })();
+        // Promo banner is controlled manually to match active checkout discount setup.
+        (function() {})();
 
         // Check founding availability
         async function checkFoundingAvailability() {
